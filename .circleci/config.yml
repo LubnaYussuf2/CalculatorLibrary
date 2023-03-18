@@ -16,9 +16,11 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
+            pip3 install -r requirements.txt
       # Step 3: run linter and tests
       - run:
           name: run tests
           command: |
             . venv/bin/activate
-            
+            flake8 --exclude=venv* --statistics
+            pytest -v --cov=calculator
